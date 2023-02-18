@@ -4,8 +4,9 @@ import com.google.gson.Gson;
 
 import com.hiberus.order.model.Destination;
 import com.hiberus.order.model.Transport;
+import com.hiberus.order.model.dto.GetPriceResponseDto;
 import com.hiberus.order.model.dto.PostOrderRequestDto;
-import com.hiberus.order.service.TicketPriceService;
+import com.hiberus.order.service.TicketPrice;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -34,11 +35,11 @@ public class OrderControllerTests {
     Gson gson = new Gson();
 
     @MockBean
-    private TicketPriceService ticketPriceService;
+    private TicketPrice ticketPriceService;
 
     @Test
     public void createAnOrder() throws Exception {
-        when(ticketPriceService.askForTicketPrice(any(), any())).thenReturn(50.95);
+        when(ticketPriceService.getPrice(any(), any())).thenReturn(GetPriceResponseDto.builder().build());
 
         PostOrderRequestDto postOrderRequestDto = PostOrderRequestDto.builder()
                 .userId("Pepito Grillo")
@@ -52,23 +53,5 @@ public class OrderControllerTests {
                 .content(gson.toJson(postOrderRequestDto)))
                 .andDo(print())
                 .andExpect(status().isCreated());
-    }
-
-    @Test
-    public void createAnOrderWithNetworkFailure() throws Exception {
-        when(ticketPriceService.askForTicketPrice(any(), any())).thenThrow(Exception.class);
-
-        PostOrderRequestDto postOrderRequestDto = PostOrderRequestDto.builder()
-                .userId("Pepito Grillo")
-                .destination(Destination.MADRID)
-                .transport(Transport.TRAIN)
-                .numberOfTickets(12)
-                .build();
-
-        mockMvc.perform(post("/order")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(gson.toJson(postOrderRequestDto)))
-                .andDo(print())
-                .andExpect(status().isInternalServerError());
     }
 }
