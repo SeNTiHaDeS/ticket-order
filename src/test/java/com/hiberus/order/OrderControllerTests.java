@@ -36,10 +36,12 @@ public class OrderControllerTests {
 
     @MockBean
     private TicketPrice ticketPriceService;
+    @MockBean
+    private GetPriceResponseDto getPriceResponseDto;
 
     @Test
     public void createAnOrder() throws Exception {
-        when(ticketPriceService.getPrice(any(), any())).thenReturn(GetPriceResponseDto.builder().build());
+        when(ticketPriceService.getPrice(any(), any())).thenReturn(getPriceResponseDto);
 
         PostOrderRequestDto postOrderRequestDto = PostOrderRequestDto.builder()
                 .userId("Pepito Grillo")

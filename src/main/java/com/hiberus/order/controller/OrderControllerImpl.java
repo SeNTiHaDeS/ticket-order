@@ -48,7 +48,7 @@ public class OrderControllerImpl  {
                     .numberOfTickets(numberOfTickets)
                     .unitaryPrice(unitaryPrice.getPrice())
                     .destination(destination)
-                    .totalPrice(300.0)
+                    .totalPrice(unitaryPrice.getPrice() * numberOfTickets)
                     .build();
 
             orderService.order(order);
