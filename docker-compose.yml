@@ -1,28 +1,20 @@
 version: '3'
 
-networks:
-  monitoring:
-    driver: bridge
 
 services:
 
   ticket-order:
     build: ./
+    network_mode: host
     ports:
       - "8080:8080"
-    networks:
-      - monitoring
-    environment:
-      - "ticket-order-db=ticket-order-db"
-      - "ticket-price-host=ticket-price"
     restart: always
 
   ticket-order-db:
     image: mysql
+    network_mode: host
     ports:
       - "3306:3306"
-    networks:
-      - monitoring
     environment:
       - "MYSQL_DATABASE=ticket-order-db"
       - "MYSQL_ROOT_PASSWORD=root"
