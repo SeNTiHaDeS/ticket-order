@@ -2,6 +2,7 @@ version: '3'
 
 services:
 
+
   ticket-order:
     build: ./
     network_mode: host
