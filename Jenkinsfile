@@ -45,10 +45,10 @@ node {
    sh 'mvn install -Dmaven.test.skip=true'
 
    // ------------------------------------
-   // -- ETAPA: Guardar
+   // -- ETAPA: Generar JAR
    // ------------------------------------
-   stage 'Guardar'
-   echo 'Archiva el paquete el paquete generado en Jenkins'
+   stage 'Generar JAR'
+    echo "Generar JAR que se guarda en Jenkins"
    step([$class: 'ArtifactArchiver', artifacts: '**/target/*.jar, **/target/*.war', fingerprint: true])
 
     // Etapa: Build Imagen
@@ -70,6 +70,5 @@ node {
 
                  echo 'Ejecutando contenedores'
                  sh 'docker-compose down'
-                 sh 'mvn clean install'
                  sh 'docker-compose up --build -d'
 }
