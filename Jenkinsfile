@@ -46,7 +46,7 @@ node {
 
    // Etapa: Build Imagen
 
-   stage 'Build Imagen'
+   stage 'Build Imagen y subir a DockerHub'
    echo 'Buildear la imagen'
    dockerImage = docker.build("ggrande/ticket-order:latest")
    echo 'Subir imagen a DockerHub'
