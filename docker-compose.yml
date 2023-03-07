@@ -4,6 +4,8 @@ services:
 
 
 
+
+
   ticket-order:
     build: ./
     network_mode: host
