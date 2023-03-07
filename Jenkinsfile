@@ -12,6 +12,8 @@ node {
 
 
 
+
+
    // Etapa: Compilar aplicación
 
    stage 'Compilar Aplicación'
