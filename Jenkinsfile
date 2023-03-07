@@ -11,6 +11,9 @@ node {
    echo "var env.PATH='${env.PATH}'"
 
 
+
+
+
    // Etapa: Compilar aplicación
 
    stage 'Compilar Aplicación'
