@@ -10,10 +10,6 @@ node {
    echo "var mvnHome='${mvnHome}'"
    echo "var env.PATH='${env.PATH}'"
 
-
-
-
-
    // Etapa: Compilar aplicación
 
    stage 'Compilar Aplicación'
@@ -23,9 +19,7 @@ node {
    echo 'Compilando aplicación'
    sh 'mvn clean compile'
 
-
    // Etapa: Test
-
 
    stage 'Test'
    echo 'Ejecutando tests'
