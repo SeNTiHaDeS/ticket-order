@@ -27,7 +27,7 @@ node {
          SONAR_LOGIN = credentials('sonar')
       }
          script {
-            def scannerHome = tool 'sonar-scanner'
+            def scannerHome = tool 'sonar'
             withSonarQubeEnv('sonarqube') {
                sh "${scannerHome}/bin/sonar-scanner \
           -Dsonar.login=${SONAR_LOGIN} \
