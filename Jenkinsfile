@@ -28,7 +28,7 @@ node {
       }
          script {
             def scannerHome = tool 'sonar'
-            withSonarQubeEnv('sonarqube') {
+            withSonarQubeEnv('sonar') {
                sh "${scannerHome}/bin/sonar-scanner \
           -Dsonar.login=${SONAR_LOGIN} \
           -Dsonar.projectKey=my-project \
