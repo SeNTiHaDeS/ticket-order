@@ -22,9 +22,23 @@ node {
 
    // Etapa: Integración sonarqube
 
-   stage 'SonarQube analysis'
-   withCredentials([string(credentialsId: 'sonar', variable: 'TOKEN')]) {
-      sh "mvn sonar:sonar -Dsonar.login=${TOKEN} -X"
+   stage('SonarQube Analysis') {
+      environment {
+         SONAR_LOGIN = credentials('sonar')
+      }
+      steps {
+         script {
+            def scannerHome = tool 'sonar-scanner'
+            withSonarQubeEnv('sonarqube') {
+               sh "${scannerHome}/bin/sonar-scanner \
+          -Dsonar.login=${SONAR_LOGIN} \
+          -Dsonar.projectKey=my-project \
+          -Dsonar.sources=src \
+          -Dsonar.host.url=http://localhost:9000 \
+          -Dsonar.login=${SONAR_LOGIN}"
+            }
+         }
+      }
    }
 
 
