@@ -24,7 +24,7 @@ node {
 
    stage('SonarQube Analysis') {
       environment {
-         SONAR_LOGIN = credentials('sonar')
+         SONAR_LOGIN = '64218da0ff112ed86195d2c43a8260b0bc5db7e1'
       }
       def scannerHome = tool 'sonar'
       withSonarQubeEnv('sonar') {
