@@ -23,7 +23,9 @@ node {
    // Etapa: Integración sonarqube
 
    stage 'SonarQube analysis'
-   sh 'mvn sonar:sonar'
+   withCredentials([string(credentialsId: 'sonar', variable: 'TOKEN')]) {
+      sh "mvn sonar:sonar -Dsonar.login=${TOKEN}"
+   }
 
 
    // Etapa: Test
