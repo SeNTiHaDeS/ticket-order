@@ -26,7 +26,6 @@ node {
       environment {
          SONAR_LOGIN = credentials('sonar')
       }
-      steps {
          script {
             def scannerHome = tool 'sonar-scanner'
             withSonarQubeEnv('sonarqube') {
@@ -39,7 +38,7 @@ node {
             }
          }
       }
-   }
+
 
 
    // Etapa: Test
