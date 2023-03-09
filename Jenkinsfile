@@ -26,19 +26,18 @@ node {
       environment {
          SONAR_LOGIN = credentials('sonar')
       }
-         script {
-            def scannerHome = tool 'sonar'
-            withSonarQubeEnv('sonar') {
-               sh "${scannerHome}/bin/sonar-scanner \
-          -Dsonar.login=${SONAR_LOGIN} \
-          -Dsonar.projectKey=my-project \
-          -Dsonar.sources=src \
-          -Dsonar.host.url=http://localhost:9000 \
-          -Dsonar.login=${SONAR_LOGIN}"
-            }
-         }
+      def scannerHome = tool 'sonar'
+      withSonarQubeEnv('sonar') {
+         sh """
+        ${scannerHome}/bin/sonar-scanner \
+        -Dsonar.login=${SONAR_LOGIN} \
+        -Dsonar.projectKey=my-project \
+        -Dsonar.sources=src \
+        -Dsonar.host.url=http://localhost:9000 \
+        -Dsonar.login=${SONAR_LOGIN}
+        """
       }
-
+   }
 
 
    // Etapa: Test
