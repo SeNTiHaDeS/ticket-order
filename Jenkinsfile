@@ -19,6 +19,13 @@ node {
    echo 'Compilando aplicación'
    sh 'mvn clean compile'
 
+
+   // Etapa: Integración sonarqube
+
+   stage 'SonarQube analysis'
+   sh 'mvn sonar:sonar'
+
+
    // Etapa: Test
 
    stage 'Test'
