@@ -65,7 +65,6 @@ node {
 
    stage 'Ejecutando contenedores'
    echo 'Ejecutando contenedores'
-   sh ' docker stop $(sudo docker ps -a -q)\n' +
-           'docker rm $(sudo docker ps -a -q)'
+   sh 'docker compose down'
    sh 'docker compose up --build -d'
 }
