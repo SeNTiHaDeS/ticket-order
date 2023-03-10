@@ -20,23 +20,6 @@ node {
    sh 'mvn clean compile'
 
 
-   // Etapa: Integración sonarqube
-
-   stage('SonarQube Analysis') {
-      environment {
-
-         SONAR_LOGIN = '64218da0ff112ed86195d2c43a8260b0bc5db7e1'
-         env.SONAR_LOGIN = SONAR_LOGIN
-      }
-      def scannerHome = tool 'sonar'
-      withSonarQubeEnv('sonar') {
-         sh "${scannerHome}/bin/sonar-scanner \
-    -Dsonar.login=$env.SONAR_LOGIN \
-    -Dsonar.projectKey=my-project \
-    -Dsonar.sources=src \
-    -Dsonar.host.url=http://localhost:9000"
-      }
-   }
 
 
    // Etapa: Test
