@@ -4,7 +4,7 @@ services:
 
 
   ticket-order:
-    build: ./
+    image: ticket-order
     network_mode: host
     container_name: ticket-order
     ports:
