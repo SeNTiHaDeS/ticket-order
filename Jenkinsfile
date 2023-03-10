@@ -23,7 +23,7 @@ node {
 
    stage 'SonarQube Analysis'
 
-   withSonarQubeEnv('sonarqube') {sh 'mvn clean package sonar:sonar -Dsonar.projectKey=ticket-order -Dsonar.host.url=http://localhost:9000 -Dsonar.login=6cf4d57aeb115a0023d5a4b3a20c8d27a7f98f2f'
+   withSonarQubeEnv('sonarqube') {sh 'mvn clean package sonar:sonar -Dsonar.projectKey=ticket-order -Dsonar.host.url=http://mysonarqube:9000 -Dsonar.login=6cf4d57aeb115a0023d5a4b3a20c8d27a7f98f2f'
          }
 
 
