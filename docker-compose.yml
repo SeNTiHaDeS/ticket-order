@@ -6,7 +6,7 @@ services:
   ticket-order:
     build: ./
     network_mode: host
-    container_name: ticket-price
+    container_name: ticket-order
     ports:
       - "8080:8080"
     restart: always
@@ -14,7 +14,7 @@ services:
   ticket-order-db:
     image: mysql
     network_mode: host
-    container_name: ticket-price-db
+    container_name: ticket-order-db
     ports:
       - "3306:3306"
     environment:
